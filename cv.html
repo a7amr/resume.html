@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ahmad Amr — Front‑End Developer (CV)</title>
+  <style>
+  :root{
+    --bg:#0e0f13;--card:#121521;--muted:#8b95a7;--text:#e6e9ef;--accent:#7dd3fc;--accent-2:#34d399;--chip:#1b2030;--line:#223047;
+    --ring: 0 0 0 1.5px rgba(125,211,252,.35),0 8px 20px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: light){
+    :root{--bg:#f6f7fb;--card:#ffffff;--muted:#586072;--text:#0f172a;--chip:#eef2ff;--line:#e6e9ef}
+  }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial}
+  *{box-sizing:border-box}
+  a{color:var(--accent);text-decoration:none;position:relative}
+  a:after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .25s ease}
+  a:hover:after{width:100%}
+  h1,h2,h3{line-height:1.2;margin:0 0 .5rem}
+  h2{font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;color:#c9cfdb}
+  p{margin:.25rem 0 .75rem}
+  ul{margin:.25rem 0 .75rem 1.1rem}
+
+  /* Layout */
+  .container{max-width:980px;margin:40px auto;padding:0 20px}
+  .card{background:radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,.12), transparent),radial-gradient(1000px 600px at 110% 10%, rgba(125,211,252,.1), transparent),var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .header{display:grid;grid-template-columns:128px 1fr;gap:18px;align-items:center;padding:26px 26px 10px}
+  .avatar{width:128px;height:128px;border-radius:50%;overflow:hidden;border:1px solid var(--line);box-shadow:var(--ring);background:#0b0e17}
+  .avatar img{width:100%;height:100%;object-fit:cover}
+  .title h1{font-size:2rem;letter-spacing:.2px}
+  .subtitle{color:var(--muted)}
+  .contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:linear-gradient(180deg,var(--chip),rgba(27,32,48,.6));border:1px solid var(--line);font-size:.92rem;color:#ced5e0;backdrop-filter: blur(4px);transition:transform .15s ease,box-shadow .2s ease}
+  .chip:hover,.chip:focus{transform:translateY(-1px);box-shadow:var(--ring);outline:none}
+  .chip a{color:inherit;margin-right:10px}
+  .chip svg{width:16px;height:16px;opacity:.9}
+
+  .toolbar{display:flex;gap:10px;justify-content:flex-end; 
+    margin: 10px;padding:10px 85px 12px}
+  .btn{border:1px solid var(--line);background:linear-gradient(180deg,#0f1526, #0b0f1b);color:#cfe5ff;padding:8px 12px;border-radius:10px;cursor:pointer}
+  .btn:hover{box-shadow:var(--ring)}
+
+  .body{display:grid;grid-template-columns:330px 1fr;gap:22px;padding:18px 26px 26px}
+  .panel{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.02));border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;overflow:hidden}
+  .panel:before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+  .stack{display:grid;gap:14px}
+
+  /* Timeline */
+  .timeline{position:relative;padding-left:18px}
+  .timeline:before{content:"";position:absolute;left:-5px;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent),var(--accent-2));border-radius:2px}
+  .tick{position:relative;margin:0 0 18px 0;padding-left:32px}
+  .tick:before{content:"";position:absolute;left:10px;top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);box-shadow:0 0 0 2px rgba(52,211,153,.15)}
+  .tick{position:relative;margin:0 0 12px 0}
+  .tick:before{content:"";position:absolute;left:-12px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+
+  .item{margin-bottom:10px}
+  .role{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .badge{font-size:.85rem;color:#b6c2d4;background:#0f1422;border:1px solid var(--line);padding:.2rem .5rem;border-radius:8px}
+
+  .skills{display:flex;flex-wrap:wrap;gap:10px}
+  .meter{height:8px;background:#0f1422;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .meter>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+
+  footer{color:#99a3b6;text-align:center;padding:18px}
+
+  /* Print */
+  @media print{
+    :root{--bg:#fff;--card:#fff;--text:#000;--muted:#555;--line:#ddd}
+    body{background:#e61414}
+    .container{margin:0;padding:0}
+    .card{box-shadow:none;border:0}
+    .panel{background:#8a1a1a;border-color:#b31111}
+    .toolbar{display:none}
+  }
+
+  /* Mobile */
+  @media (max-width:860px){
+    .body{grid-template-columns:1fr}
+    .header{grid-template-columns:96px 1fr}
+    .avatar{width:96px;height:96px}
+  }
+</style>
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <div class="header">
+        <div class="avatar"><img alt="Ahmad Amr headshot" src="ahmad.jpeg"></div>
+        <div class="title">
+          <h1>Ahmad Amr</h1>
+          <div class="subtitle">Front‑End Developer</div>
+          <div class="contact">
+            <a class="chip" title="Call" aria-label="Phone" href="tel:+12194248304">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.32 1.77.6 2.61a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.47-1.17a2 2 0 0 1 2.11-.45c.84.28 1.71.48 2.61.6A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+1 (219) 424-8304</span>
+            </a>
+            <a class="chip" title="Email" aria-label="Email" href="mailto:Ahmad.amro.dev@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+              <span>Ahmad.amro.dev@gmail.com</span>
+            </a>
+            <span class="chip" title="Profiles" aria-label="Profiles">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"/></svg>
+              <a href="https://www.linkedin.com/in/ahmad-amro-99b672233/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://github.com/a7amr" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </span>
+          </div>
+          <div class="toolbar">
+            <button class="btn" id="toggleTheme" type="button">Toggle Theme</button>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <aside class="stack">
+          <section class="panel">
+            <h2>Profile</h2>
+            <p>Motivated and detail‑oriented <b>Front‑End Developer</b> with a strong background in graphic design and a <b>Master’s in Information Technology (GPA 3.9)</b> from Purdue University Northwest. Experienced in building responsive, visually appealing websites using <b>Webflow</b>, <b>React</b>, <b>HTML</b>, <b>CSS</b>, and <b>JavaScript</b>. Passionate about blending development and design to deliver engaging, user‑focused digital experiences. Currently seeking an <b>OPT opportunity</b> to grow within a collaborative team.</p>
+          </section>
+          <section class="panel">
+            <h2>Technical Skills</h2>
+            <div class="skills"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Bootstrap</span><span class="chip">Webflow</span><span class="chip">Responsive Design</span><span class="chip">UI/UX Principles</span><span class="chip">Git</span><span class="chip">Content Deployment</span></div>
+            <h2 style="margin-top:14px">Design Tools</h2>
+            <div class="skills"><span class="chip">Figma</span><span class="chip">Photoshop</span><span class="chip">Illustrator</span><span class="chip">Adobe XD</span><span class="chip">After Effects</span><span class="chip">InDesign</span></div>
+            <h2 style="margin-top:14px">Soft Skills</h2>
+            <div class="skills"><span class="chip">Collaboration</span><span class="chip">Communication</span><span class="chip">Event Coordination</span><span class="chip">Time Management</span></div>
+          </section>
+        </aside>
+        <section class="stack">
+          <section class="panel">
+            <h2>Experience</h2>
+            <div class="timeline">
+              <div class="tick">
+                <div class="role"><b>Design Intern — MECA Engineering Corporation</b><span class="badge">2024 • Remote / Merrillville, IN</span></div>
+                <ul>
+                  <li>Designed and launched corporate website in <b>Webflow</b>; enhanced UX and mobile performance.</li>
+                  <li>Coordinated with engineering/marketing teams; implemented CMS collections and animations.</li>
+                </ul>
+              </div>
+              <div class="tick">
+                <div class="role"><b>Professional Assistant — Purdue University Northwest</b><span class="badge">2023–2024 • Hammond, IN</span></div>
+                <ul>
+                  <li>Produced event visuals (posters, banners, social kits) and supported department web updates.</li>
+                  <li>Managed logistics and timelines with staff/student orgs; ensured brand consistency.</li>
+                </ul>
+              </div>
+              <div class="tick">
+                <div class="role"><b>Graphic Designer — IQRAA Tech Company</b><span class="badge">2021–2023 • Overseas</span></div>
+                <ul>
+                  <li>Built UI assets, branding systems, and marketing content; collaborated with devs to ship interfaces.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Education</h2>
+            <div class="item"><div class="role"><b>Master of Science in Information Technology</b><span class="badge">GPA 3.9</span></div><div>Purdue University Northwest</div></div>
+            <div class="item"><div class="role"><b>Bachelor of Arts in Graphic Design</b></div><div>Overseas Institution</div></div>
+          </section>
+          <section class="panel">
+            <h2>Projects</h2>
+            <div class="item"><div class="role"><b>MECA Engineering Website</b></div><p>Developed and deployed a responsive Webflow site.</p></div>
+            <div class="item"><div class="role"><b>Personal Portfolio</b></div><p>React projects with HTML/CSS and Figma wireframes.</p></div>
+          </section>
+          <section class="panel">
+            <h2>Additional Details</h2>
+            <ul><li><b>Work Eligibility:</b> OPT – F‑1 Visa</li><li><b>Availability:</b> Immediate</li><li><b>Relocation:</b> Open / Remote</li></ul>
+          </section>
+        </section>
+      </div>
+      <footer>© <span id="year"></span> Ahmad Amr — CV</footer>
+    </section>
+  </main>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <script>
+    (function(){
+      const btn=document.getElementById('toggleTheme');
+      if(!btn) return;
+      btn.addEventListener('click',()=>{
+        document.documentElement.classList.toggle('light');
+        if(document.documentElement.classList.contains('light')){
+          document.documentElement.style.setProperty('--bg','#1A1A1D');
+          document.documentElement.style.setProperty('--card','#222831');
+          document.documentElement.style.setProperty('--text','#ffffff');
+          document.documentElement.style.setProperty('--muted','#456882');
+          document.documentElement.style.setProperty('--chip','#456882');
+          document.documentElement.style.setProperty('--line','#e6e9ef');
+        }else{
+          document.documentElement.style.removeProperty('--bg');
+          document.documentElement.style.removeProperty('--card');
+          document.documentElement.style.removeProperty('--text');
+          document.documentElement.style.removeProperty('--muted');
+          document.documentElement.style.removeProperty('--chip');
+          document.documentElement.style.removeProperty('--line');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
